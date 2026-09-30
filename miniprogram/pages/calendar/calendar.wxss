@@ -1,0 +1,181 @@
+.nextboard {
+  background: linear-gradient(160deg, #1a1e25, #232833 62%, #181c23);
+  border-radius: 24rpx;
+  padding: 30rpx 28rpx;
+  color: #f2efe6;
+  margin-bottom: 24rpx;
+}
+.nlabel {
+  display: block;
+  font-size: 24rpx;
+  color: #9fa7b5;
+}
+.nwhen {
+  display: block;
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #ffb300;
+  margin-top: 6rpx;
+}
+.nclock {
+  display: block;
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 1rpx;
+  margin-top: 10rpx;
+}
+.nnote {
+  display: block;
+  font-size: 22rpx;
+  color: #aeb5c1;
+  margin-top: 10rpx;
+  line-height: 1.7;
+}
+
+.card-title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 600;
+  margin-bottom: 8rpx;
+}
+.card .muted {
+  display: block;
+  line-height: 1.7;
+}
+.bigline {
+  display: block;
+  font-size: 36rpx;
+  font-weight: 700;
+  margin: 8rpx 0 6rpx;
+}
+
+.axis {
+  display: flex;
+  justify-content: space-between;
+  margin: 22rpx 0 8rpx;
+  padding-left: 118rpx;
+  padding-right: 210rpx;
+}
+.alabel {
+  font-size: 22rpx;
+  color: #8a8f98;
+}
+
+.arow {
+  display: flex;
+  align-items: center;
+  padding: 10rpx 0;
+  border-bottom: 2rpx solid #ece7da;
+}
+.arow.last {
+  background: #fff8e4;
+  border-radius: 10rpx;
+  border-bottom-color: #efdcac;
+}
+.adate {
+  width: 118rpx;
+  font-size: 24rpx;
+  color: #4d5158;
+}
+.atrack {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  height: 28rpx;
+}
+.ahalf {
+  flex: 1;
+  height: 22rpx;
+  display: flex;
+  align-items: center;
+}
+.ahalf.left {
+  justify-content: flex-end;
+}
+.ahalf.right {
+  justify-content: flex-start;
+}
+.amid {
+  width: 2rpx;
+  height: 26rpx;
+  background: #c9c3b3;
+}
+.bar {
+  height: 20rpx;
+  border-radius: 4rpx;
+}
+.bar.down {
+  background: #1c7a52;
+}
+.bar.up {
+  background: #c0392b;
+}
+.bar.hold {
+  background: #b8b2a2;
+}
+.aout {
+  width: 210rpx;
+  text-align: right;
+}
+.aton {
+  display: block;
+  font-size: 24rpx;
+  font-weight: 700;
+}
+.aton.up {
+  color: #c0392b;
+}
+.aton.down {
+  color: #1c7a52;
+}
+.aton.hold {
+  color: #8a8f98;
+}
+.perl {
+  display: block;
+  font-size: 20rpx;
+  color: #8a8f98;
+}
+
+.crow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14rpx 0;
+  border-bottom: 2rpx solid #ece7da;
+}
+.cnm {
+  display: block;
+  font-size: 26rpx;
+}
+.cas {
+  display: block;
+  font-size: 20rpx;
+  color: #8a8f98;
+}
+.cv {
+  font-size: 34rpx;
+  font-weight: 700;
+}
+.cu {
+  font-size: 20rpx;
+  color: #6b6f78;
+  font-weight: 400;
+}
+
+.foot {
+  padding: 6rpx 8rpx 20rpx;
+}
+.ftitle {
+  display: block;
+  font-size: 26rpx;
+  font-weight: 600;
+  margin-bottom: 8rpx;
+}
+.ftext {
+  display: block;
+  font-size: 22rpx;
+  color: #6b6f78;
+  line-height: 1.75;
+}

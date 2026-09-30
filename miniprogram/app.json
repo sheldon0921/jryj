@@ -1,0 +1,27 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/compare/compare",
+    "pages/calendar/calendar"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#1a1e25",
+    "navigationBarTitleText": "今日油价",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f4f2ec"
+  },
+  "tabBar": {
+    "color": "#8a8f98",
+    "selectedColor": "#c98a00",
+    "backgroundColor": "#fffdf8",
+    "borderColor": "#ddd7c9",
+    "list": [
+      { "pagePath": "pages/index/index", "text": "油价" },
+      { "pagePath": "pages/compare/compare", "text": "全国对比" },
+      { "pagePath": "pages/calendar/calendar", "text": "调价日历" }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

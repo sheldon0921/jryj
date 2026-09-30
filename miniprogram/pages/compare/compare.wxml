@@ -1,0 +1,40 @@
+<view class="wrap">
+  <view class="card">
+    <view class="card-title">全国油价对比</view>
+    <view class="muted">今日 {{dateLabel}} 现行挂牌价（自 {{effectiveLabel}} 执行）· 当前 {{count}} 个地区 · 点击任意地区，首页价格牌即切换到该地区</view>
+
+    <input class="search" type="text" value="{{q}}" placeholder="搜索地区，如 海南 / 西北" bindinput="onSearch" confirm-type="search" />
+    <scroll-view class="chipbar" scroll-x enable-flex>
+      <view class="chip {{item === area ? 'on' : ''}}" wx:for="{{areas}}" wx:key="*this" data-a="{{item}}" bindtap="onArea">{{item}}</view>
+    </scroll-view>
+
+    <view class="sortbar">
+      <view class="sbtn {{sortKey === item.key ? 'on' : ''}}" wx:for="{{cols}}" wx:key="key" data-k="{{item.key}}" bindtap="onSort">
+        <text>{{item.label}}</text>
+        <text class="ind" wx:if="{{sortKey === item.key}}">{{dir > 0 ? '↑' : '↓'}}</text>
+      </view>
+    </view>
+
+    <view class="thead">
+      <text class="tn">地区</text>
+      <text class="tc">92号</text>
+      <text class="tc">95号</text>
+      <text class="tc">98号</text>
+      <text class="tc">0#柴油</text>
+    </view>
+
+    <view class="trow {{item.on ? 'on' : ''}}" wx:for="{{rows}}" wx:key="name" data-name="{{item.name}}" bindtap="onPick">
+      <view class="tn">
+        <text class="nm">{{item.name}}</text>
+        <text class="rk num">#{{item.rank}}</text>
+      </view>
+      <text class="tc num {{item.p92C}}">{{item.p92V}}</text>
+      <text class="tc num {{item.p95C}}">{{item.p95V}}</text>
+      <text class="tc num {{item.p98C}}">{{item.p98V}}</text>
+      <text class="tc num {{item.d0C}}">{{item.d0V}}</text>
+    </view>
+
+    <view class="muted hint" wx:if="{{emptyHint}}">{{emptyHint}}</view>
+    <view class="muted legend">绿色 = 该油品全国最低，红色 = 最高；# 后数字为 92 号汽油从低到高的排名。单位：元/升。</view>
+  </view>
+</view>

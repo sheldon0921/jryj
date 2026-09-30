@@ -1,0 +1,92 @@
+<view class="wrap">
+  <view class="head">
+    <view>
+      <text class="hd-title">{{board.name}}今日油价</text>
+      <text class="hd-sub">今日 {{board.dateLabel}} · 价格自 {{board.effectiveLabel}} 执行</text>
+    </view>
+    <view class="head-r">
+      <text class="cd-label">距下次调价</text>
+      <text class="cd-val num">{{countdown.short}}</text>
+    </view>
+  </view>
+
+  <view class="board">
+    <view class="bhead">
+      <text class="btitle">{{board.name}} · {{board.area}}</text>
+      <text class="bdate">现行挂牌价 · {{board.dateLabel}}</text>
+    </view>
+
+    <view class="grid">
+      <view class="pcell {{item.focus ? 'focus' : ''}}" wx:for="{{board.cards}}" wx:key="key">
+        <text class="plabel">{{item.label}}</text>
+        <text class="pval num">{{item.price}}</text>
+        <text class="punit">元/升 · {{item.deltaText}}</text>
+      </view>
+    </view>
+
+    <view class="bfoot">
+      <text class="{{board.delta92Cls}}">92号比全国均价 {{board.delta92}} 元/升，95号 {{board.delta95}}</text>
+      <text class="badge">{{board.rankText}}</text>
+      <text class="bspread">{{board.spreadText}}</text>
+    </view>
+  </view>
+
+  <view class="board picker">
+    <input class="search" placeholder="搜索地区，如 广东 / 西北" value="{{q}}" bindinput="onSearch" />
+    <scroll-view class="chipbar" scroll-x enable-flex>
+      <view class="chip {{area === item ? 'on' : ''}}" wx:for="{{areas}}" wx:key="*this" data-a="{{item}}" bindtap="onArea">{{item}}</view>
+    </scroll-view>
+    <scroll-view class="regbar" scroll-x enable-flex>
+      <view class="rcell {{item.on ? 'on' : ''}}" wx:for="{{cells}}" wx:key="name" data-name="{{item.name}}" bindtap="onPick">
+        <text class="rn">{{item.name}}</text>
+        <text class="rp num">{{item.price}}</text>
+      </view>
+    </scroll-view>
+    <text class="hint" wx:if="{{emptyHint}}">{{emptyHint}}</text>
+    <text class="tips">地区按 92号汽油从低到高排列，左右滑动查看</text>
+  </view>
+
+  <view class="card">
+    <text class="card-title">加油花费估算</text>
+    <text class="card-sub">按 {{board.name}} 今日油价计算</text>
+
+    <view class="fields">
+      <view class="field">
+        <text class="flabel">油箱容量（升）</text>
+        <input class="fnum num" type="digit" value="{{tank}}" data-k="tank" bindblur="onNum" bindconfirm="onNum" />
+      </view>
+      <view class="field">
+        <text class="flabel">每月里程（公里）</text>
+        <input class="fnum num" type="digit" value="{{monthKm}}" data-k="monthKm" bindblur="onNum" bindconfirm="onNum" />
+      </view>
+      <view class="field">
+        <text class="flabel">百公里油耗（升）</text>
+        <input class="fnum num" type="digit" value="{{l100}}" data-k="l100" bindblur="onNum" bindconfirm="onNum" />
+      </view>
+    </view>
+
+    <view class="fills">
+      <view class="fillrow" wx:for="{{est.fills}}" wx:key="key">
+        <text class="fk">{{item.label}}</text>
+        <text class="fv num">{{item.value}}</text>
+        <text class="fs num">{{item.sub}}</text>
+      </view>
+    </view>
+
+    <view class="month">
+      <view>
+        <text class="fk">每月油费（92号 · {{est.liters}} 升）</text>
+        <text class="msub">全年约 {{est.yearlyText}}</text>
+      </view>
+      <text class="mv num">{{est.monthlyText}}</text>
+    </view>
+    <text class="save {{est.saveCls}}">与全国均价相比，每月{{est.saveText}}</text>
+  </view>
+
+  <view class="foot">
+    <text class="ftitle">数据说明</text>
+    <text class="ftext">价格为自 {{board.effectiveLabel}} 起执行的现行挂牌价，取自各地网友提供的中石油、中石化加油站汇总，覆盖 31 个省级地区；同省不同城市、民营加油站会有差异，实际以当地加油站报价为准。查看日期 {{board.dateLabel}}。</text>
+    <text class="ftext" wx:if="{{stale}}">{{stale}}</text>
+    <text class="ftext">调价窗口依据国家发改委成品油价格机制（每 10 个工作日一调）。本小程序为离线快照，不自动更新行情。</text>
+  </view>
+</view>

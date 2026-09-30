@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>今日油价 | 2026年9月30日 全国92/95/98号汽油与0号柴油价格</title>
+<meta name="description" content="查询今日（2026年9月30日）全国各省92号、95号、98号汽油及0号柴油零售价格，对比地区差价、估算加油花费，并跟踪下一次成品油调价窗口。">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <p class="brand"><span class="brand-mark" aria-hidden="true">⛽</span> 今日油价</p>
+    <div class="topbar-meta">
+      <span class="stamp">今日 <b id="stamp-date">--</b></span>
+      <span class="count-chip">下次调价 <b id="top-countdown" class="num">--</b></span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="board" aria-labelledby="board-title">
+    <div class="picker">
+      <h1 id="board-title">选择地区，查看今日挂牌价</h1>
+      <label class="field-label" for="region-search">搜索地区</label>
+      <input id="region-search" type="search" placeholder="如：广东 / 新疆" autocomplete="off">
+      <div class="chips" id="area-chips" role="group" aria-label="按区域筛选"></div>
+      <ul class="region-list" id="region-list" aria-label="地区列表"></ul>
+    </div>
+
+    <div class="panel" aria-live="polite">
+      <div class="panel-head">
+        <p class="panel-region"><b id="region-name">北京</b><span id="region-area" class="muted">华北</span></p>
+        <p class="panel-sub num" id="panel-updated">--</p>
+      </div>
+      <div class="prices" id="price-grid"></div>
+      <div class="panel-foot">
+        <p class="delta-line" id="delta-line">--</p>
+        <p class="rank-line" id="rank-line">--</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card calc" aria-labelledby="calc-title">
+    <div class="card-head">
+      <h2 id="calc-title">加油花费估算</h2>
+      <p class="muted" id="calc-region">按 <b>北京</b> 今日油价计算</p>
+    </div>
+    <div class="calc-grid">
+      <div class="calc-inputs">
+        <label class="field-label" for="tank-size">油箱容量（升）</label>
+        <input id="tank-size" class="num" type="number" min="5" max="200" step="5" value="50">
+        <label class="field-label" for="month-km">每月行驶里程（公里）</label>
+        <input id="month-km" class="num" type="number" min="0" max="20000" step="100" value="1500">
+        <label class="field-label" for="consume">百公里油耗（升）</label>
+        <input id="consume" class="num" type="number" min="1" max="30" step="0.5" value="8">
+      </div>
+      <div class="calc-out" id="calc-out"></div>
+    </div>
+  </section>
+
+  <section class="card" aria-labelledby="table-title">
+    <div class="card-head">
+      <h2 id="table-title">全国油价对比</h2>
+      <p class="muted">点击表头排序，点击地区行切换上方价格牌</p>
+    </div>
+    <div class="table-scroll">
+      <table class="cmp">
+        <caption class="sr-only">各地区 92号、95号、98号汽油与0号柴油零售价格对比</caption>
+        <thead>
+          <tr id="cmp-head">
+            <th scope="col"><button type="button" class="sortbtn" data-key="name">地区<span class="sort-ind" aria-hidden="true"></span></button></th>
+            <th scope="col"><button type="button" class="sortbtn" data-key="p92">92号<span class="sort-ind" aria-hidden="true"></span></button></th>
+            <th scope="col"><button type="button" class="sortbtn" data-key="p95">95号<span class="sort-ind" aria-hidden="true"></span></button></th>
+            <th scope="col"><button type="button" class="sortbtn" data-key="p98">98号<span class="sort-ind" aria-hidden="true"></span></button></th>
+            <th scope="col"><button type="button" class="sortbtn" data-key="d0">0号柴油<span class="sort-ind" aria-hidden="true"></span></button></th>
+            <th scope="col">92号 vs 全国均价</th>
+          </tr>
+        </thead>
+        <tbody id="cmp-body"></tbody>
+      </table>
+    </div>
+    <p class="legend muted">表中 <span class="lo">绿</span> 为该油品全国最低、<span class="hi">红</span> 为最高。</p>
+  </section>
+
+  <section class="card" aria-labelledby="trend-title">
+    <div class="card-head">
+      <h2 id="trend-title">2026 年调价日历</h2>
+      <p class="muted">每次窗口的汽油调整幅度（元/吨）· 悬停查看每升变化</p>
+    </div>
+    <div class="chart-wrap"><div id="chart" class="chart"></div></div>
+    <p class="chart-read" id="chart-read" aria-live="polite">2026 年 19 轮调价窗口：汽油累计上调 2,375 元/吨，92号汽油每升累计约 +1.82 元。</p>
+    <ul class="cal" id="adjust-cal"></ul>
+  </section>
+
+  <section class="card" aria-labelledby="window-title">
+    <div class="card-head">
+      <h2 id="window-title">本轮调价周期</h2>
+      <p class="muted" id="window-note"></p>
+    </div>
+    <p class="muted stale" id="stale-note"></p>
+    <div class="window-grid">
+      <div class="w-cell">
+        <p class="w-label">最近一次调整</p>
+        <p class="w-strong" id="last-adjust">--</p>
+        <p class="muted" id="last-adjust-detail">--</p>
+      </div>
+      <div class="w-cell">
+        <p class="w-label">下一次窗口</p>
+        <p class="w-strong" id="next-window">--</p>
+        <p class="num w-clock" id="next-clock">--</p>
+      </div>
+      <div class="w-cell">
+        <p class="w-label">国际原油参考</p>
+        <ul id="crude-list" class="crude"></ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p><b>数据说明</b> 表内为现行执行价，即 <span id="foot-effective">9月24日24时</span> 那轮调价后各地网友提供的中石油、中石化加油站挂牌价汇总，覆盖 31 个省、自治区、直辖市；查看日期为 <span id="foot-date">今日</span>。同一省内不同城市、民营加油站可能存在差异，实际以当地加油站报价为准。</p>
+    <p>调价窗口时间依据国家发改委成品油价格机制（每 10 个工作日一调，节假日顺延）；国际原油为页面标注交易日的收盘参考价。本站是静态价格手册，不自动抓取行情，每逢新窗口需人工更新。</p>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

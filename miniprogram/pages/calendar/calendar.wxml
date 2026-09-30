@@ -1,0 +1,60 @@
+<view class="wrap">
+  <view class="board nextboard">
+    <text class="nlabel">下一次调价窗口</text>
+    <text class="nwhen">{{next.label}}</text>
+    <text class="nclock num">{{countdown.full}}</text>
+    <text class="nnote">{{next.note}}</text>
+  </view>
+
+  <view class="card">
+    <text class="card-title">最近一次调整</text>
+    <text class="bigline">{{last.label}} 上调</text>
+    <text class="muted">{{last.tonText}}</text>
+    <text class="muted">{{last.perLText}}</text>
+  </view>
+
+  <view class="card">
+    <text class="card-title">2026 年调价轨迹</text>
+    <text class="muted">{{totals.rounds}} 轮窗口 · 汽油累计 {{totals.tonText}} 元/吨 · 92号每升累计 {{totals.perLText}} 元</text>
+
+    <view class="axis">
+      <text class="alabel">← 下调</text>
+      <text class="alabel">上调 →</text>
+    </view>
+
+    <view class="arow {{item.isLast ? 'last' : ''}}" wx:for="{{rows}}" wx:key="date">
+      <text class="adate">{{item.date}}</text>
+      <view class="atrack">
+        <view class="ahalf left">
+          <view class="bar down" style="width:{{item.wl}}%"></view>
+        </view>
+        <view class="amid"></view>
+        <view class="ahalf right">
+          <view class="bar up" style="width:{{item.wr}}%"></view>
+        </view>
+      </view>
+      <view class="aout">
+        <text class="aton num {{item.cls}}">{{item.tonText}}</text>
+        <text class="aperl num">92号 {{item.perLText}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="card">
+    <text class="card-title">国际原油参考</text>
+    <view class="crow" wx:for="{{crude}}" wx:key="name">
+      <view>
+        <text class="cnm">{{item.name}}</text>
+        <text class="cas">{{item.asOf}}</text>
+      </view>
+      <text class="cv num">{{item.priceText}} <text class="cu">{{item.unit}}</text></text>
+    </view>
+    <text class="muted">原油变化率决定下一轮窗口的涨跌方向，国内油价通常滞后 1—2 轮反映。</text>
+  </view>
+
+  <view class="foot">
+    <text class="ftitle">调价机制</text>
+    <text class="ftext">国家发改委每 10 个工作日设定一个调价窗口，依据前 10 个工作日国际市场油价平均变化调整国内汽、柴油最高零售价格；幅度不足 50 元/吨时不作调整，未调金额纳入下次累加或冲抵。本页查看日期为 {{dateLabel}}，价格与轨迹基于 {{effectiveLabel}} 那轮调整，窗口时间以发改委公告为准。</text>
+    <text class="ftext" wx:if="{{stale}}">{{stale}}</text>
+  </view>
+</view>
