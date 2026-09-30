@@ -2,4 +2,6 @@
 node_modules/
 miniprogram_npm/
 *.log
+logs/
+scripts/.sync/
 .今日油价.qoder.site

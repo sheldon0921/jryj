@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- 每天 08:30 与 18:30 各跑一次；生效方式见 scripts/README-sync.md -->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.qoder.oil-sync</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/sh</string>
+    <string>/Users/wanggenggeng/Documents/Qoder/2026-09-30/3f93923e/scripts/sync-and-push.sh</string>
+  </array>
+  <key>StartCalendarInterval</key>
+  <array>
+    <dict>
+      <key>Hour</key>
+      <integer>8</integer>
+      <key>Minute</key>
+      <integer>30</integer>
+    </dict>
+    <dict>
+      <key>Hour</key>
+      <integer>18</integer>
+      <key>Minute</key>
+      <integer>30</integer>
+    </dict>
+  </array>
+  <key>StandardOutPath</key>
+  <string>/Users/wanggenggeng/Documents/Qoder/2026-09-30/3f93923e/logs/launchd.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/wanggenggeng/Documents/Qoder/2026-09-30/3f93923e/logs/launchd.err.log</string>
+</dict>
+</plist>

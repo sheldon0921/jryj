@@ -85,8 +85,8 @@
 
   <view class="foot">
     <text class="ftitle">数据说明</text>
-    <text class="ftext">价格为自 {{board.effectiveLabel}} 起执行的现行挂牌价，取自各地网友提供的中石油、中石化加油站汇总，覆盖 31 个省级地区；同省不同城市、民营加油站会有差异，实际以当地加油站报价为准。查看日期 {{board.dateLabel}}。</text>
+    <text class="ftext">价格为自 {{board.effectiveLabel}} 起执行的现行挂牌价，取自油价通（youjiatong.com）汇编的各地中石油、中石化加油站挂牌价，覆盖 31 个省级地区；同省不同城市、民营加油站会有差异，实际以当地加油站报价为准。查看日期 {{board.dateLabel}}。</text>
     <text class="ftext" wx:if="{{stale}}">{{stale}}</text>
-    <text class="ftext">调价窗口依据国家发改委成品油价格机制（每 10 个工作日一调）。本小程序为离线快照，不自动更新行情。</text>
+    <text class="ftext">调价窗口依据国家发改委成品油价格机制（每 10 个工作日一调）。数据由仓库里的同步脚本抓取校验后随版本打包，运行期间不联网取数。</text>
   </view>
 </view>

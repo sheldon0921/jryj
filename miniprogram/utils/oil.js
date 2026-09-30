@@ -60,13 +60,19 @@ function tonText(v) {
 const STATS = {};
 const ASC = {};
 FUELS.forEach(function (f) {
-  const list = D.regions.slice().sort(function (a, b) {
+  const known = D.regions.filter(function (r) {
+    return r[f.key] != null;
+  });
+  const list = known.slice().sort(function (a, b) {
     return a[f.key] - b[f.key];
   });
   const sum = list.reduce(function (acc, r) {
     return acc + r[f.key];
   }, 0);
-  ASC[f.key] = list;
+  // 不供应该油品的地区排在末尾，比较页仍会列出但参与不了均价
+  ASC[f.key] = list.concat(D.regions.filter(function (r) {
+    return r[f.key] == null;
+  }));
   STATS[f.key] = {
     avg: sum / list.length,
     min: list[0][f.key],
@@ -96,6 +102,9 @@ function sortRegions(list, key, dir) {
   const out = list.slice();
   out.sort(function (a, b) {
     if (key === "name") return a.name.localeCompare(b.name, "zh-Hans-CN");
+    if (a[key] == null && b[key] == null) return 0;
+    if (a[key] == null) return 1;
+    if (b[key] == null) return -1;
     return (a[key] - b[key]) * (dir || 1);
   });
   return out;
@@ -149,8 +158,8 @@ function fuelCards(region) {
       key: f.key,
       label: f.label,
       price: money(v),
-      deltaText: "比均价 " + signText(diff),
-      deltaCls: diff > 0.004 ? "hi" : diff < -0.004 ? "lo" : "",
+      deltaText: v == null ? "当地不供应" : "比均价 " + signText(diff),
+      deltaCls: v == null ? "" : diff > 0.004 ? "hi" : diff < -0.004 ? "lo" : "",
       focus: f.key === "p92"
     };
   });
